@@ -18,8 +18,8 @@ export class UsersService {
     }
 
     async login(loginUserDto: LoginUserDto) {
-        const user: any = await this.userModel.findOne({username: loginUserDto.username});
-        if (!user) throw new HttpException('User with username not found.', 404);
+        const user: any = await this.userModel.findOne({email: loginUserDto.email});
+        if (!user) throw new HttpException('User with email not found.', 404);
         
         const isMatch = await bcrypt.compare(loginUserDto.password!, user.password);
         if (!isMatch) {

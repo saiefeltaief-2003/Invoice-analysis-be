@@ -17,9 +17,9 @@ export class RegisterUserDto {
 }
 
 export class LoginUserDto {
-    @IsNotEmpty({message: "The username cannot be empty."})
-    @IsString({message: "The username is not valid."})
-    username?: string;
+    @IsNotEmpty({message: "The Email cannot be empty."})
+    @IsEmail({}, {message: "This Email address is not valid."})
+    email?: string;
 
     @IsNotEmpty({message: "The password cannot be empty."})
     password?: string;

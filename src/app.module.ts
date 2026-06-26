@@ -5,10 +5,17 @@ import { InvoicesModule } from './invoices/invoices.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 import { RecommendationsModule } from './recommendations/recommendations.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/SummerIntern2026'),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      expandVariables: true,
+    }),
+    MongooseModule.forRoot(process.env.url!, {
+      dbName: process.env.dbName!,
+    }),
     UsersModule,
     InvoicesModule,
     SuppliersModule,
